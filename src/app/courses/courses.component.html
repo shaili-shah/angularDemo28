@@ -1,0 +1,31 @@
+<div *ngIf="courses.length > 0; then lstCourses else noCourses">    </div>
+<ng-template #lstCourses>
+    <h5> List of courses</h5>
+   
+    <div *ngFor= "let course of courses">
+        {{course}}
+    </div>
+</ng-template>
+<ng-template #noCourses>
+   <h5>no courses yet</h5>
+</ng-template>
+
+<button (click)= "loadTest()">load test</button>
+
+<div >
+    <button class="" (click)="Add()">Add</button>
+    list of test
+
+    <ul>
+        <li *ngFor = "let t of test; index as i; even as isEven ;">
+            {{ t.name }}      
+         <span *ngIf="isEven">even </span>
+         <button  class="" (click)="removeTest(i)" >remove</button>
+        </li>
+    </ul>
+
+</div>
+<!-- 
+<div [hidden]="test.length > 0">
+    no test
+</div> -->

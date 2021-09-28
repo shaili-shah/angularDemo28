@@ -1,0 +1,11 @@
+<br>
+<span> <h5>post</h5></span>
+<span class="fa fa-heart" (click)="OnclickFav()" [class.active]= "isSelected" ></span>
+
+{{likesCount}}
+
+
+<div>{{task.assignee?.name}}</div>
+<div class="col-md-3">
+    <input class="form-control col-md-3" type="text" [appInputFormat]="'uppercase'" >
+</div>

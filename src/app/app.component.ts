@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angularDemo28';
+  title = 'AngularFavDemo';
+
+  stitle = "shipping title";
+  btitle = "billing title";
+
+  obj = {
+    isSelected : true,
+    likesCount : 21
+  }
+
 }

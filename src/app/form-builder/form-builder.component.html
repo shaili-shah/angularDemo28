@@ -1,0 +1,11 @@
+<form [formGroup] = "form" >
+    <div>
+        <input type="text" class="form-control" formControlName = "name"  placeholder="name">
+    </div>
+
+    <div formGroupName = "contact" >
+        <input type="text" class="form-control" placeholder="email" formControlName = "email">
+        <input type="text" class="form-control" placeholder="phone" formControlName = "phone">
+    </div>
+
+</form>

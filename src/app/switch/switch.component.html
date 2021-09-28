@@ -1,0 +1,30 @@
+<ul class="nav nav-pills">
+    <li class="nav-item"> 
+      <a class="nav-link active" [class.active] = "viewMode == 'map'" data-toggle="pill" (click)="viewMode='map'">map view</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [class.active] = "viewMode == 'list'" data-toggle="pill" (click)="viewMode='list'">list view</a>
+    </li>
+  </ul>
+
+  <div [ngSwitch]="viewMode" >
+      <div *ngSwitchCase= "'map'">map view</div>
+      <div *ngSwitchCase= "'list'"> list view</div>
+      <div *ngSwitchDefault>default  </div>
+  </div>
+
+<!--   
+<button [style.backgroundColor]="canSave? 'blue' : 'gray'" [style.color]="canSave?'white' : 'black'" >save</button>
+
+<button 
+[ngStyle] = "{'backgroundColor' : canSave? 'blue' : 'gray',
+             'color' : canSave? 'white' : 'black' }" >ngstyle</button> -->
+
+             <zippy [title] = "stitle" [billingTitle]= "btitle">
+              <ng-container title="shipping" class="shipping">
+                   switch shipping details goes here...
+              </ng-container>
+              <ng-container title="billing" class="billing">
+                  switch billing details goes here..
+              </ng-container>
+          </zippy>
