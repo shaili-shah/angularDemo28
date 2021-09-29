@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule } from '@angular/common/http';
 
@@ -16,6 +16,10 @@ import { FormArrayComponent } from './form-array/form-array.component';
 import { FormBuilderComponent } from './form-builder/form-builder.component';
 import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
 import { PostsComponent } from './posts/posts.component';
+import { NewService } from './new.service';
+import { AppErrorHandler } from './common/app-handler-error';
+import { DataService } from './data.service';
+import { BooksComponent } from './books/books.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,8 @@ import { PostsComponent } from './posts/posts.component';
     FormArrayComponent,
     FormBuilderComponent,
     ChangePasswordFormComponent,
-    PostsComponent
+    PostsComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,11 @@ import { PostsComponent } from './posts/posts.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    NewService,
+    DataService,
+    { provide : ErrorHandler , useClass : AppErrorHandler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

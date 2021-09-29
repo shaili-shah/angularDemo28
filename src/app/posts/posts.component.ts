@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NewService } from '../new.service';
 
 @Component({
   selector: 'app-posts',
@@ -7,26 +7,71 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  posts : any;
-  url : string = "https://jsonplaceholder.typicode.com/posts";
+  posts: any;
 
-  constructor(private http : HttpClient) {
-    http.get(this.url).subscribe( response => {
-      this.posts = response;
-    });
-   }
 
-   addPost(input : HTMLInputElement){
-      let post : any= { title : input.value }
-      input.value = '';
+  constructor(private service: NewService) {
 
-      this.http.post(this.url , JSON.stringify(post)).subscribe(response =>{
+  }
+
+  addPost(input: HTMLInputElement) {
+    let post: any = { title: input.value }
+    this.posts.splice(0, 0, post);
+    input.value = '';
+
+    this.service.add(post).subscribe(
+      (response: any) => {
         post.id = response;
-        this.posts.splice(0,0,post);
+        //this.posts.splice(0, 0, post);
+      },
+      (error: Response) => {
+        this.posts.splice(0,)
+        if (error.status == 400) {
+          // this.form.setErrors(error);
+        } else {
+          throw error;
+        }
       });
-   }
+  }
+
+  updatePost(post: any) {
+    post.title = "Sh@ili";
+    this.service.edit(post).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        throw error;
+      })
+  }
+
+  deletePost(post: any) {
+    let index = this.posts.indexOf(post);
+    this.posts.splice(index, 1)
+
+    this.service.delete(post.id).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        this.posts.splice(0, 1, post);
+        if (error.status === 404) {
+          alert('post is already deleted.')
+        } else {
+          throw error;
+        }
+      }
+    )
+
+  }
 
   ngOnInit(): void {
+
+    this.service.getAll().subscribe(
+      response => {
+        this.posts = response;
+      });
+
   }
 
 }
