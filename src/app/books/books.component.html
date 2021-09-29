@@ -5,6 +5,7 @@
         <img src={{book.avatar_url}} />
 
         <div> {{ book.login }}</div>
-        <div> {{book.html_url}}</div>
+
+        <div>  <a [routerLink]="['/followers' , book.id]"> {{book.html_url}} </a> </div>
     </li>
 </ul>

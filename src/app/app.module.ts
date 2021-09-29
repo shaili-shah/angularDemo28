@@ -1,6 +1,7 @@
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { FavComponent } from './fav/fav.component';
@@ -20,6 +21,10 @@ import { NewService } from './new.service';
 import { AppErrorHandler } from './common/app-handler-error';
 import { DataService } from './data.service';
 import { BooksComponent } from './books/books.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { GithubProfileComponent } from './github-profile/github-profile.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -36,13 +41,39 @@ import { BooksComponent } from './books/books.component';
     FormBuilderComponent,
     ChangePasswordFormComponent,
     PostsComponent,
-    BooksComponent
+    BooksComponent,
+    NavBarComponent,
+    NotFoundComponent,
+    GithubProfileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: HomeComponent
+      },
+      {
+        path: 'followers/:username',
+        component: GithubProfileComponent
+      },
+      {
+        path: 'followers',
+        component: BooksComponent
+      },
+      {
+        path: 'post',
+        component: PostsComponent
+      },
+      {
+        path: '**',
+        component: NotFoundComponent
+      }
+    ])
   ],
   providers: [
     NewService,
