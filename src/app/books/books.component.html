@@ -6,6 +6,6 @@
 
         <div> {{ book.login }}</div>
 
-        <div>  <a [routerLink]="['/followers' , book.id]"> {{book.html_url}} </a> </div>
+        <div>  <a [routerLink]="['/followers' , book.id , book.login]"> {{book.html_url}} </a> </div>
     </li>
 </ul>

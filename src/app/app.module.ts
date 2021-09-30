@@ -58,7 +58,7 @@ import { HomeComponent } from './home/home.component';
         component: HomeComponent
       },
       {
-        path: 'followers/:username',
+        path: 'followers/:id/:username',
         component: GithubProfileComponent
       },
       {

@@ -1,0 +1,8 @@
+a.set-a {
+    color: gray;
+    text-decoration: none;
+    margin-left:  3px  ;
+}
+a.set-a.nav-link.active {
+    padding-top: 0px;
+}
